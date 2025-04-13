@@ -1,0 +1,29 @@
+name: Staybroke poller
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # every 10 minutes
+  workflow_dispatch:
+
+jobs:
+  poll-job:
+    runs-on: ubuntu-latest
+    env:
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      FETCH_URL : ${{secrets.FETCH_URL}}
+      API_KEY : ${{secrets.API_KEY}}
+      WEBHOOK : ${{secrets.WEBHOOK}}
+
+    steps:
+      - uses: actions/cvheckout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run polling script
+        run: node poller.js
