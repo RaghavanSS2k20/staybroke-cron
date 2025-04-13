@@ -8,7 +8,7 @@ const WEBHOOK_URL = process.env.WEBHOOK;
 const FETCH_URL = process.env.FETCH_URL;
 
 async function poll() {
-  console.log("MONGO URI",MONGO_URI)
+  // console.log("MONGO URI",MONGO_URI)
   const client = new MongoClient(MONGO_URI);
 
   try {
