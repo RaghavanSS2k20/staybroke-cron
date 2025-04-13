@@ -8,6 +8,7 @@ on:
 jobs:
   poll-job:
     runs-on: ubuntu-latest
+    environment: cron 
     env:
       MONGO_URI: ${{ secrets.MONGO_URI }}
       FETCH_URL : ${{secrets.FETCH_URL}}
